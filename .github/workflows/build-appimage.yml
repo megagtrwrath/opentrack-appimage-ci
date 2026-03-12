@@ -205,7 +205,7 @@ jobs:
       
       - name: Install Tobii stream engine lib
         run: |
-           if [ "${{ matrix.flavor }}"  = "Tobii"; then
+           if [ "${{ matrix.flavor }}"  = "Tobii" ]; then
               # grab latest available Tobii-stream-engine
               wget -q 'https://raw.githubusercontent.com/megagtrwrath/tobii_eye_tracker_linux_installer/master/tobii-stream-engine-4.24.0-linux-x86_64.tar.gz'
               tar xzf 'tobii-stream-engine-4.24.0-linux-x86_64.tar.gz'
