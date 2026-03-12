@@ -257,10 +257,10 @@ jobs:
           )
 
           if [ "${{ matrix.onnx_variant }}" != "none" ]; then
-            cmake_args=( -DONNXRuntime_DIR=/usr/local )
+            cmake_args+=( -DONNXRuntime_DIR=/usr/local )
           fi
           if [ "${{ matrix.flavor}}" = "Tobii" ]; then
-            cmake_args=( -DSDK_TOBII=/usr/lib/libtobii_stream_engine.so )
+            cmake_args+=( -DSDK_TOBII=/usr/lib/libtobii_stream_engine.so )
           fi
           
           cmake .. "${cmake_args[@]}"
