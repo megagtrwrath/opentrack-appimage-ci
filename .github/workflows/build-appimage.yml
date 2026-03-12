@@ -12,11 +12,7 @@ on:
         description: 'OpenTrack version to build (e.g., opentrack-2.3.14)'
         required: false
         default: 'latest'
-  
-  # Scheduled check for new releases (daily at 6 AM UTC)
-  schedule:
-    - cron: '0 6 * * *'
-  
+    
   # Allow running on push for testing
   push:
     branches: [ main ]
@@ -100,7 +96,7 @@ jobs:
       matrix:
         include:
           - flavor: no-onnx
-            artifact_suffix: NoONNX
+            artifact_suffix: STANDARD
             onnx_variant: none
             onnx_pkg: ''
             allow_fail: false
@@ -122,6 +118,11 @@ jobs:
           #   onnx_variant: gpu_cuda13
           #   # CUDA-specific ONNX Runtime build (CUDA 13.x series)
           #   onnx_pkg: onnxruntime-linux-x64-gpu_cuda13
+          #   allow_fail: true
+          # - flavor: tobii
+	  #   artifact_suffix: TOBII
+	  #   onnx_variant: none
+          #   onnx_pkg:''
           #   allow_fail: true
     continue-on-error: ${{ matrix.allow_fail }}
     name: Build (${{ matrix.flavor }})
@@ -670,11 +671,11 @@ jobs:
           Built from OpenTrack tag `${{ needs.check-version.outputs.opentrack_tag }}`.
 
           ## Flavors
-          - `NoONNX`: OpenTrack without NeuralNet (no ONNX Runtime bundled)
+          - `Standard`: OpenTrack without NeuralNet (no ONNX Runtime bundled)
           - `ONNX-CPU`: OpenTrack with NeuralNet (ONNX Runtime CPU bundled)
           - `ONNX-GPU`: OpenTrack with GPU-based NeuralNet processing (ONNX Runtime GPU bundled)
           - `ONNX-GPU-CUDA`: **Not yet available** OpenTrack with CUDA-specific NeuralNet processing (ONNX Runtime GPU CUDA13 bundled; requires CUDA/NVIDIA runtime libraries on the target system)
-
+	  - `Tobii` : **Not yet available** Opentrack with Tobii support patches [EXPERIMENTAL]
           ## Notes
           - `ONNX-GPU` may require additional CUDA runtime libraries on the target system.
           EOF
