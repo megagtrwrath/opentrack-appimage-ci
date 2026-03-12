@@ -6,21 +6,9 @@ permissions:
 
 on:
   # Manual trigger
-  workflow_dispatch:
-    inputs:
-      opentrack_version:
-        description: 'OpenTrack version to build (e.g., opentrack-2.3.14)'
-        required: false
-        default: 'latest'
+  workflow_dispatch
     
-  # Allow running on push for testing
-  push:
-    branches: [ main ]
-    paths:
-      - '.github/workflows/build-appimage.yml'
-      - 'build-scripts/**'
-
-jobs:
+  jobs:
   check-version:
     runs-on: ubuntu-latest
     outputs:
