@@ -110,9 +110,8 @@ jobs:
           - flavor: tobii
             artifact_suffix: TOBII
             onnx_variant: none
-            onnx_pkg:''
+            onnx_pkg: ''
             allow_fail: true
-
     continue-on-error: ${{ matrix.allow_fail }}
     name: Build (${{ matrix.flavor }})
     
