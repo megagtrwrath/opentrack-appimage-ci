@@ -227,7 +227,7 @@ jobs:
           cd opentrack
 
           # Install patch if Tobii variant selected
-          if {"${{ matrix.flavor}}" = "Tobii" ]; then
+          if [ "${{ matrix.flavor}}" = "Tobii" ]; then
             wget -q 'https://raw.githubusercontent.com/megagtrwrath/opentrack-appimage-ci/refs/heads/main/Patches/tracker-tobii-linux.patch'
             git apply ./tracker-tobii-linux.patch
           fi
@@ -259,8 +259,8 @@ jobs:
           if [ "${{ matrix.onnx_variant }}" != "none" ]; then
             cmake_args=( -DONNXRuntime_DIR=/usr/local )
           fi
-          if [ "${{ matrix.flavor}}" = "tobii" ]; then
-            cmake_args=( -SDK_TOBII= /usr/lib/libtobii_stream_engine.so )
+          if [ "${{ matrix.flavor}}" = "Tobii" ]; then
+            cmake_args=( -SDK_TOBII=/usr/lib/libtobii_stream_engine.so )
           fi
           
           cmake .. "${cmake_args[@]}"
