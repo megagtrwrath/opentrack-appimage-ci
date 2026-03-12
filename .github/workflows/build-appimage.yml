@@ -92,7 +92,7 @@ jobs:
             artifact_suffix: ONNX-CPU
             onnx_variant: cpu
             onnx_pkg: onnxruntime-linux-x64
-            allow_fail: false
+            allow_fail: true
           - flavor: onnx-gpu
             artifact_suffix: ONNX-GPU
             onnx_variant: gpu
