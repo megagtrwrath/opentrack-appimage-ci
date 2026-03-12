@@ -204,15 +204,15 @@ jobs:
           ls -la /usr/local/lib/libonnxruntime*
       
       - name: Install Tobii stream engine lib
-        if matrix.flavor  = 'Tobii'
-        # grab latest available Tobii-stream-engine
-        wget -q 'https://raw.githubusercontent.com/megagtrwrath/tobii_eye_tracker_linux_installer/master/tobii-stream-engine-4.24.0-linux-x86_64.tar.gz'
-	
-        tar xzf "tobii-stream-engine-4.24.0-linux-x86_64.tar.gz"
-
-	# install library and header files
-        cp ./tobii-stream-engine-4.24.0/lib/libtobii_stream_engine.so /lib
-        cp ./tobii-stream-engine-4.24.0/include/tobii /usr/include
+        run: |
+           if [ "${{ matrix.flavor }}"  = 'Tobii; then
+              # grab latest available Tobii-stream-engine
+              wget -q 'https://raw.githubusercontent.com/megagtrwrath/tobii_eye_tracker_linux_installer/master/tobii-stream-engine-4.24.0-linux-x86_64.tar.gz'
+              tar xzf 'tobii-stream-engine-4.24.0-linux-x86_64.tar.gz'
+           
+              # install library and header files
+              cp ./tobii-stream-engine-4.24.0/lib/libtobii_stream_engine.so /lib
+              cp ./tobii-stream-engine-4.24.0/include/tobii /usr/include
 
       - name: Clone and build OpenTrack
         run: |
@@ -225,7 +225,7 @@ jobs:
 
           git clone --depth 1 --branch ${{ steps.build_info.outputs.tag }} https://github.com/opentrack/opentrack.git
           cd opentrack
-	  
+
           # Install patch if Tobii variant selected
           if {"${{ matrix.flavor}}" = "Tobii" ]; then
           wget -q 'https://raw.githubusercontent.com/megagtrwrath/opentrack-appimage-ci/refs/heads/main/Patches/tracker-tobii-linux.patch'
@@ -680,7 +680,7 @@ jobs:
           - `ONNX-CPU`: OpenTrack with NeuralNet (ONNX Runtime CPU bundled)
           - `ONNX-GPU`: OpenTrack with GPU-based NeuralNet processing (ONNX Runtime GPU bundled)
           - `ONNX-GPU-CUDA`: **Not yet available** OpenTrack with CUDA-specific NeuralNet processing (ONNX Runtime GPU CUDA13 bundled; requires CUDA/NVIDIA runtime libraries on the target system)
-	  - `Tobii` : **Not yet available** Opentrack with Tobii support patches [EXPERIMENTAL]
+          - `Tobii` : **Not yet available** Opentrack with Tobii support patches [EXPERIMENTAL]
           ## Notes
           - `ONNX-GPU` may require additional CUDA runtime libraries on the target system.
           EOF
