@@ -107,11 +107,11 @@ jobs:
           #   # CUDA-specific ONNX Runtime build (CUDA 13.x series)
           #   onnx_pkg: onnxruntime-linux-x64-gpu_cuda13
           #   allow_fail: true
-           - flavor: tobii
-	     artifact_suffix: TOBII
-	     onnx_variant: none
-             onnx_pkg:''
-             allow_fail: true
+          - flavor: tobii
+	    artifact_suffix: TOBII
+	    onnx_variant: none
+            onnx_pkg:''
+            allow_fail: true
     continue-on-error: ${{ matrix.allow_fail }}
     name: Build (${{ matrix.flavor }})
     
