@@ -257,9 +257,12 @@ jobs:
           )
 
           if [ "${{ matrix.onnx_variant }}" != "none" ]; then
-            cmake_args+=( -DONNXRuntime_DIR=/usr/local )
+            cmake_args=( -DONNXRuntime_DIR=/usr/local )
           fi
-
+          if [ "${{ matrix.flavor}}" = "tobii" ]; then
+            cmake_args=( -SDK_TOBII= /usr/lib/libtobii_stream_engine.so )
+          fi
+          
           cmake .. "${cmake_args[@]}"
 
           echo "CMake cache SDK values:";
@@ -680,7 +683,7 @@ jobs:
           - `ONNX-CPU`: OpenTrack with NeuralNet (ONNX Runtime CPU bundled)
           - `ONNX-GPU`: OpenTrack with GPU-based NeuralNet processing (ONNX Runtime GPU bundled)
           - `ONNX-GPU-CUDA`: **Not yet available** OpenTrack with CUDA-specific NeuralNet processing (ONNX Runtime GPU CUDA13 bundled; requires CUDA/NVIDIA runtime libraries on the target system)
-          - `Tobii` : **Not yet available** Opentrack with Tobii support patches [EXPERIMENTAL]
+          - `Tobii` : Opentrack with Tobii support patches [EXPERIMENTAL]
           ## Notes
           - `ONNX-GPU` may require additional CUDA runtime libraries on the target system.
           EOF
