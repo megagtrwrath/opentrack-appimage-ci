@@ -227,9 +227,9 @@ jobs:
           cd opentrack
 
           # Install patch if Tobii variant selected
-          if {"${{ matrix.flavor}}" = "tobii" ]; then
-          wget -q 'https://raw.githubusercontent.com/megagtrwrath/opentrack-appimage-ci/refs/heads/main/Patches/tracker-tobii-linux.patch'
-          git apply tracker-tobii-linux.patch
+          if {"${{ matrix.flavor}}" = "Tobii" ]; then
+            wget -q 'https://raw.githubusercontent.com/megagtrwrath/opentrack-appimage-ci/refs/heads/main/Patches/tracker-tobii-linux.patch'
+            git apply ./tracker-tobii-linux.patch
           fi
 
           mkdir build
