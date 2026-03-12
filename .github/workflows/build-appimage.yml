@@ -211,8 +211,8 @@ jobs:
               tar xzf 'tobii-stream-engine-4.24.0-linux-x86_64.tar.gz'
            
               # install library and header files
-              cp ./tobii-stream-engine-4.24.0/lib/libtobii_stream_engine.so /lib
-              cp ./tobii-stream-engine-4.24.0/include/tobii /usr/include
+              cp ./tobii-stream-engine-4.24.0/lib/libtobii_stream_engine.so /usr/local/lib
+              cp ./tobii-stream-engine-4.24.0/include/tobii /usr/local/include
            fi
       - name: Clone and build OpenTrack
         run: |
