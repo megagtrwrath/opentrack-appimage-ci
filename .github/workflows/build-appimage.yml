@@ -100,13 +100,6 @@ jobs:
             # GPU builds often require CUDA runtime libs present at build/package time.
             # Keep the pipeline green while iterating on CUDA deps.
             allow_fail: true
-          # This CUDA-specific ONNX Runtime build is currently not available on v1.23.2
-          # - flavor: onnx-gpu-cuda
-          #   artifact_suffix: ONNX-GPU-CUDA
-          #   onnx_variant: gpu_cuda13
-          #   # CUDA-specific ONNX Runtime build (CUDA 13.x series)
-          #   onnx_pkg: onnxruntime-linux-x64-gpu_cuda13
-          #   allow_fail: true
           - flavor: Tobii
             artifact_suffix: TOBII
             onnx_variant: none
@@ -686,7 +679,6 @@ jobs:
           - `Standard`: OpenTrack without NeuralNet (no ONNX Runtime bundled)
           - `ONNX-CPU`: OpenTrack with NeuralNet (ONNX Runtime CPU bundled)
           - `ONNX-GPU`: OpenTrack with GPU-based NeuralNet processing (ONNX Runtime GPU bundled)
-          - `ONNX-GPU-CUDA`: **Not yet available** OpenTrack with CUDA-specific NeuralNet processing (ONNX Runtime GPU CUDA13 bundled; requires CUDA/NVIDIA runtime libraries on the target system)
           - `Tobii` : Opentrack with Tobii support patches [EXPERIMENTAL]
           ## Notes
           - `ONNX-GPU` may require additional CUDA runtime libraries on the target system.
