@@ -676,10 +676,10 @@ jobs:
           Built from OpenTrack tag `${{ needs.check-version.outputs.opentrack_tag }}`.
 
           ## Flavors
-          - `Standard`: OpenTrack without NeuralNet (no ONNX Runtime bundled)
-          - `ONNX-CPU`: OpenTrack with NeuralNet (ONNX Runtime CPU bundled)
-          - `ONNX-GPU`: OpenTrack with GPU-based NeuralNet processing (ONNX Runtime GPU bundled)
-          - `Tobii` : Opentrack with Tobii support patches [EXPERIMENTAL]
+          - `Standard`: Fully featured OpenTrack, Just without NeuralNet tracker (no ONNX Runtime bundled)
+          - `ONNX-CPU`: Standard OpenTrack with NeuralNet (ONNX Runtime CPU bundled)
+          - `ONNX-GPU`: Standard OpenTrack with GPU-based NeuralNet processing (ONNX Runtime GPU bundled)
+          - `Tobii` : Standard Opentrack with Tobii support patches [EXPERIMENTAL]
           ## Notes
           - `ONNX-GPU` may require additional CUDA runtime libraries on the target system.
           EOF
