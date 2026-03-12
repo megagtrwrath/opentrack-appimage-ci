@@ -8,7 +8,7 @@ on:
   # Manual trigger
   workflow_dispatch
     
-  jobs:
+jobs:
   check-version:
     runs-on: ubuntu-latest
     outputs:
